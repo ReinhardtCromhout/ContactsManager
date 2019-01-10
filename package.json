@@ -1,0 +1,23 @@
+{
+  "name": "contactsmanager",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ReinhardtCromhout/ContactsManager.git"
+  },
+  "author": "Reinhardt Cromhout",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ReinhardtCromhout/ContactsManager/issues"
+  },
+  "homepage": "https://github.com/ReinhardtCromhout/ContactsManager#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4"
+  }
+}
