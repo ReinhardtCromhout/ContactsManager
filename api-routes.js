@@ -45,7 +45,7 @@ router.post('/register', function (req, res) {
         });
 });
 
-router.post('/login', function (req, res) {
+router.post('/login', function (req, res) { 
     var db = getDb();
     var databseObject = db.db(databaseName)
     var loginDetails = req.body
