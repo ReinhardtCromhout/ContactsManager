@@ -1,6 +1,6 @@
 // Imports
-const initDb = require("./db").initDb;
-const getDb = require("./db").getDb;
+const initDb = require("./database").initDb;
+const getDb = require("./database").getDb;
 let express = require('express')
 let bodyParser = require('body-parser');
 let apiRoutes = require("./api-routes")
@@ -14,8 +14,8 @@ app.use(bodyParser.urlencoded({
  }));
  app.use(bodyParser.json())
 
- // Use Api routes in the App
-app.use('/api', apiRoutes)
+//  Use Api routes in the App
+app.use('/', apiRoutes)
 
  // Setup server port
 var port = process.env.PORT || 8080
@@ -31,4 +31,10 @@ var port = process.env.PORT || 8080
 });
 
 // Send message for default URL
-app.get('/', (req, res) => res.send('Hello World with ExpressJS'));
+// app.get('/', (req, res) => res.send('Hello World with ExpressJS'));
+
+// Endpoint to Test DB Connection
+app.get('/testDbConnection', function (req, res){
+    const db = getDb()
+    res.send("Omegalul: " + db.s.url)
+});
