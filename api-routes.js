@@ -22,11 +22,9 @@ router.post('/register', function (req, res) {
 
     databseObject.collection(collectionName)
         .find({
-            email: newRegistration.email
+            email: newRegistration.Email
         })
         .toArray(function (err, result) {
-            console.log(result)
-            console.log(isEmptyObject(result))
             if (err) throw err
             if (isEmptyObject(result)) {
                 databseObject.collection(collectionName).insertOne(newRegistration, function (err, result) {
@@ -42,6 +40,33 @@ router.post('/register', function (req, res) {
                 res.statusCode = 409
                 res.json({
                     message: 'A user with this email address already exists',
+                });
+            }
+        });
+});
+
+router.post('/login', function (req, res) {
+    var db = getDb();
+    var databseObject = db.db(databaseName)
+    var loginDetails = req.body
+
+    databseObject.collection(collectionName)
+        .find({
+            Email: loginDetails.Email,
+            Password : loginDetails.Password
+        })
+        .toArray(function (err, result) {
+            if (err) throw err
+            if (!isEmptyObject(result)) {
+                res.statusCode = 200
+                res.json({
+                    message: 'User login sucessful',
+                    User: result[0]
+                });
+            } else {
+                res.statusCode = 404
+                res.json({
+                    message: 'Invalid email and password combination'                    
                 });
             }
         });
